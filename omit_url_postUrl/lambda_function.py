@@ -42,7 +42,15 @@ def lambda_handler(event, context):
         }
     )
 
+    # CORS対応
+    headers = {
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+    }
+
     return {
         'statusCode': 200,
+        'headers': headers,
         'body': json.dumps(f"success: {count}")
     }
