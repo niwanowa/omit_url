@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google風検索画面</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Yu Mincho', serif;
+        }
 
+        h1 {
+            font-size: 48px;
+        }
+
+        .search-box {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<h1>HTML短縮</h1>
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="Googleで検索">
+        <input type="submit" id="search-button" value="検索">
+    </div>
+
+    <script>
+        document.getElementById('search-button').addEventListener('click', function () {
+            // 検索ボタンがクリックされたときの処理
+
+            // 検索ボックスの値を取得
+            var searchText = document.getElementById('search-input').value;
+
+            // APIエンドポイントにPOSTリクエストを送信
+            fetch('https://wfgwpgp4u4.execute-api.ap-northeast-1.amazonaws.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: searchText })
+            })
+            .then(function(response) {
+                // レスポンスの処理をここに記述
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+        });
+    </script>
+</html>
