@@ -47,7 +47,7 @@
 </head>
 <h1>HTML短縮</h1>
     <div class="search-box">
-        <input type="text" id="search-input" placeholder="Googleで検索">
+        <input type="text" id="search-input" placeholder="URLを入力">
         <input type="submit" id="search-button" value="検索">
     </div>
 
@@ -59,7 +59,7 @@
             var searchText = document.getElementById('search-input').value;
 
             // APIエンドポイントにPOSTリクエストを送信
-            fetch('https://wfgwpgp4u4.execute-api.ap-northeast-1.amazonaws.com', {
+            fetch('https://8lwfp0teci.execute-api.ap-northeast-1.amazonaws.com/default', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,11 +67,17 @@
                 body: JSON.stringify({ url: searchText })
             })
             .then(function(response) {
-                // レスポンスの処理をここに記述
-                console.log(response);
+                // レスポンスのJSONデータを取得し、アラートボックスに表示
+                response.json().then(function(data) {
+                    alert(data);
+                }).catch(function(error) {
+                    console.error(error);
+                    alert('レスポンスデータの解析に失敗しました。');
+                });
             })
             .catch(function(error) {
                 console.error(error);
+                alert('エラーが発生しました。');
             });
         });
     </script>
