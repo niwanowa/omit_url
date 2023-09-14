@@ -19,7 +19,7 @@
             font-size: 48px;
         }
 
-        .search-box {
+        .box {
             margin-top: 20px;
             display: flex;
             align-items: center;
@@ -46,17 +46,19 @@
     </style>
 </head>
 <h1>HTML短縮</h1>
-    <div class="search-box">
-        <input type="text" id="search-input" placeholder="URLを入力">
-        <input type="submit" id="search-button" value="短縮">
+    <div class="box">
+        <input type="text" id="input" placeholder="URLを入力">
+        <input type="submit" id="button" value="短縮">
     </div>
 
-    <script>
-        document.getElementById('search-button').addEventListener('click', function () {
-            // 検索ボタンがクリックされたときの処理
+    <div id="resultTable"></div>
 
-            // 検索ボックスの値を取得
-            var searchText = document.getElementById('search-input').value;
+    <script>
+        document.getElementById('button').addEventListener('click', function () {
+            // ボタンがクリックされたときの処理
+
+            // ボックスの値を取得
+            var searchText = document.getElementById('input').value;
 
             // APIエンドポイントにPOSTリクエストを送信
             fetch('https://omit.niwanowa.tips', {
@@ -67,9 +69,11 @@
                 body: JSON.stringify({ url: searchText })
             })
             .then(function(response) {
-                // レスポンスのJSONデータを取得し、アラートボックスに表示
+                // レスポンスのJSONデータを取得し、テーブルに表示
                 response.json().then(function(data) {
-                    alert(data);
+                    var resultTable = document.getElementById('resultTable');
+                    var tableHTML = '<table><tr><td><a href = "' + 'https://omit.niwanowa.tips/' + data + '"</a> ' + 'https://omit.niwanowa.tips/' + data +'</td></tr></table>';
+                    resultTable.innerHTML = tableHTML;
                 }).catch(function(error) {
                     console.error(error);
                     alert('レスポンスデータの解析に失敗しました。');
