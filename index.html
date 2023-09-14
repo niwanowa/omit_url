@@ -72,7 +72,7 @@
                 // レスポンスのJSONデータを取得し、テーブルに表示
                 response.json().then(function(data) {
                     var resultTable = document.getElementById('resultTable');
-                    var tableHTML = '<table><tr><td><a href = "' + 'https://omit.niwanowa.tips/' + data + '"</a> ' + 'https://omit.niwanowa.tips/' + data +'</td></tr></table>';
+                    var tableHTML = '<table><tr><td><a href = "' + 'https://omit.niwanowa.tips/' + data + '"' + 'target="_blank"</a> ' + 'https://omit.niwanowa.tips/' + data +'</td></tr></table>';
                     resultTable.innerHTML = tableHTML;
                 }).catch(function(error) {
                     console.error(error);
