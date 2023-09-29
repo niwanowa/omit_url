@@ -1,2 +1,2 @@
 # omit_url
-動作サンプル
+ <a href="omit.niwanowa.tips" target="_blank">example</a>
